@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /Cityscapes_Moustafa
 
 # Copy the requirements.txt file into the container
 COPY requirements.txt ./
@@ -11,11 +11,11 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
-COPY . /app
+COPY . /Cityscapes_Moustafa
 
 # Expose port if needed (depends on how you want to run your script)
 EXPOSE 8080
 
 # Define the command to run your application
-CMD ["python", "app.py"]
+CMD ["python", "Evaluation.py"]
 
