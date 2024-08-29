@@ -21,4 +21,4 @@ jobs:
     - name: Tag the Docker image
       run: docker tag cityscapes:latest mou6969/cityscapes_moustafa:latest
     - name: push the Docker image
-      run: docker mou6969/cityscapes_moustafa:latest
+      run: docker push mou6969/cityscapes_moustafa:latest
