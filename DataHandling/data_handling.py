@@ -223,7 +223,7 @@ from torchvision import transforms as TF
 valid_data_transform = TF.Compose([
     LoadImage(keys=['image path', 'target path']),
     ResizeImages(size=[256, 256]),
-    NormalizeLabels(keys=['image path', 'target path']),
+    NormalizeLabels(keys=['target path']),
     # BlendCLAHEandNormalize(keys=['image path'], mean=[0.2868955433368683, 0.3251330256462097, 0.28389179706573486], std=[0.18696387112140656, 0.19017396867275238, 0.18720199167728424]),
     NormalizeImages(keys=['image path'], mean=[0.2868955433368683, 0.3251330256462097, 0.28389179706573486],
                     std=[0.18696387112140656, 0.19017396867275238, 0.18720199167728424]),
@@ -276,7 +276,7 @@ class Dataset(Dataset):
 ###################################################################################################
 # Assuming you have the CSVs loaded into pandas DataFrames
 
-csv_test = pd.read_csv("/home/moustafa/Cityscapes_Moustafa/DataHandling/test_data.csv")
+csv_test = pd.read_csv("test_data.csv")
 # Specify the root directory where the images and masks are stored
 root_directory = "/home/moustafa/Cityscapes_Moustafa/Mount/data"
 
