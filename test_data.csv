@@ -1,5 +1,0 @@
-image path,target path
-/home/moustafa/Cityscapes_Moustafa/Mount/data/zurich_000091_000019_leftImg8bit.png,/home/moustafa/Cityscapes_Moustafa/Mount/data/zurich_000091_000019_gtFine_labelTrainIds.png
-/home/moustafa/Cityscapes_Moustafa/Mount/data/hanover_000000_013814_leftImg8bit.png,/home/moustafa/Cityscapes_Moustafa/Mount/data/hanover_000000_013814_gtFine_labelTrainIds.png
-/home/moustafa/Cityscapes_Moustafa/Mount/data/erfurt_000057_000019_leftImg8bit.png,/home/moustafa/Cityscapes_Moustafa/Mount/data/erfurt_000057_000019_gtFine_labelTrainIds.png
-/home/moustafa/Cityscapes_Moustafa/Mount/data/aachen_000057_000019_leftImg8bit.png,/home/moustafa/Cityscapes_Moustafa/Mount/data/aachen_000057_000019_gtFine_labelTrainIds.png
