@@ -116,7 +116,7 @@ import os
 import pandas as pd
 
 # Path to the dataset
-dataset_images_dir = "data/"
+dataset_images_dir = "/home/moustafa/Cityscapes_Moustafa/mount"
 
 
 # Paths for CSV files
@@ -405,7 +405,7 @@ class Dataset(Dataset):
             # Extract and modify the relative path
             relative_path = row[key]
             # Remove the initial part of the path using re.sub
-            relative_path = re.sub(r'^.*?data/', '', relative_path)
+            relative_path = re.sub(r'^.*?mount/', '', relative_path)
             # Construct the full path from root directory and modified relative path
             file_path = os.path.join(self.root_dir, relative_path)
 
@@ -433,7 +433,7 @@ class Dataset(Dataset):
 
 csv_test = pd.read_csv("test_data.csv")
 # Specify the root directory where the images and masks are stored
-root_directory = "/home/moustafa/Cityscapes_Moustafa/data/"
+root_directory = "/home/moustafa/Cityscapes_Moustafa/mount"
 
 # Specify the keys of interest, typically the columns for images and masks in your DataFrame
 keys_of_interest = ["image path", "target path"]
@@ -507,7 +507,7 @@ def plot_and_save_samples(inputs, targets, predictions, num_classes, save_path, 
     print(f"Saved {inputs_np.shape[0]} sample plots from batch {batch_idx} to '{save_path}'.")
 
 
-def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_dir='results'):
+def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_dir='/data/results'):
     model.eval()
 
     all_preds = []

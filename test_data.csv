@@ -1,0 +1,3 @@
+image path,target path
+/home/moustafa/Cityscapes_Moustafa/mount/erfurt_000057_000019_leftImg8bit.png,/home/moustafa/Cityscapes_Moustafa/mount/erfurt_000057_000019_gtFine_labelTrainIds.png
+/home/moustafa/Cityscapes_Moustafa/mount/aachen_000057_000019_leftImg8bit.png,/home/moustafa/Cityscapes_Moustafa/mount/aachen_000057_000019_gtFine_labelTrainIds.png
