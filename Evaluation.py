@@ -116,7 +116,7 @@ import os
 import pandas as pd
 
 # Path to the dataset
-dataset_images_dir = "/home/moustafa/Cityscapes_Moustafa/Mount/data"
+dataset_images_dir = "data/"
 
 
 # Paths for CSV files
@@ -413,6 +413,7 @@ class Dataset(Dataset):
             if os.path.exists(file_path):
                 # Open the image file and store it in the sample dictionary
                 sample[key] = file_path
+
             else:
                 print(f"File not found: {file_path}")
                 # Handle missing file scenario (e.g., set to None or raise an exception)
@@ -432,7 +433,7 @@ class Dataset(Dataset):
 
 csv_test = pd.read_csv("test_data.csv")
 # Specify the root directory where the images and masks are stored
-root_directory = "/home/moustafa/Cityscapes_Moustafa/Mount/data"
+root_directory = "/home/moustafa/Cityscapes_Moustafa/data/"
 
 # Specify the keys of interest, typically the columns for images and masks in your DataFrame
 keys_of_interest = ["image path", "target path"]
@@ -446,6 +447,7 @@ ds_test = Dataset(
     KeysOfInterest=keys_of_interest,
     data_transform=valid_data_transform
 )
+
 
 ########################################################################################
 from torch.utils.data import DataLoader
@@ -505,7 +507,7 @@ def plot_and_save_samples(inputs, targets, predictions, num_classes, save_path, 
     print(f"Saved {inputs_np.shape[0]} sample plots from batch {batch_idx} to '{save_path}'.")
 
 
-def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_dir='Mount/results'):
+def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_dir='results'):
     model.eval()
 
     all_preds = []
@@ -551,7 +553,7 @@ def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_di
 
 # Example usage:
 model = UNet(in_channels=3, out_channels=20).to(device)
-checkpoint_path = "Mount/models/model_checkpoint_epoch_55.pth"
+checkpoint_path = "models/model_checkpoint_epoch_55.pth"
 
 # Load model from checkpoint if exists
 if os.path.exists(checkpoint_path):
