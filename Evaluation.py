@@ -116,7 +116,7 @@ import os
 import pandas as pd
 
 # Path to the dataset
-dataset_images_dir = "/home/moustafa/Cityscapes_Moustafa/mount"
+dataset_images_dir = "/data"
 
 
 # Paths for CSV files
