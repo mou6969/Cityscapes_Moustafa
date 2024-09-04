@@ -553,7 +553,7 @@ def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_di
 
 # Example usage:
 model = UNet(in_channels=3, out_channels=20).to(device)
-checkpoint_path = "models/model_checkpoint_epoch_55.pth"
+checkpoint_path = "/data/model_checkpoint_epoch_55.pth"
 
 # Load model from checkpoint if exists
 if os.path.exists(checkpoint_path):
