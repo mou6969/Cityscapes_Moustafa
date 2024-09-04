@@ -116,7 +116,8 @@ import os
 import pandas as pd
 
 # Path to the dataset
-dataset_images_dir = "/data"
+dataset_images_dir = "/data/images"
+dataset_labels_dir = "/data/gtFine"
 
 
 # Paths for CSV files
@@ -131,7 +132,6 @@ for root, dirs, files in os.walk(dataset_images_dir):
         if file_name.endswith("_leftImg8bit.png"):
             all_files.append(os.path.join(root, file_name))
 
-
 def process_files(file_list, csv_writer):
     for file_path in file_list:
         file_name = os.path.basename(file_path)
@@ -142,7 +142,7 @@ def process_files(file_list, csv_writer):
 
         # Construct the corresponding label image path
         label_image_name = f"{city_prefix}_{image_prefix}_gtFine_labelTrainIds.png"
-        label_image_path = os.path.join(dataset_images_dir,label_image_name)
+        label_image_path = os.path.join(dataset_labels_dir,city_prefix,label_image_name)
 
 
         if not os.path.isfile(label_image_path):
@@ -164,10 +164,10 @@ with open(test_csv_path, mode='w', newline='') as test_file:
     process_files(all_files, test_writer)
 
 print("Debug: Finished writing to test_data.csv")
-
-
-
-
+#
+#
+#
+#
 import re
 
 from torchvision import transforms
@@ -405,7 +405,7 @@ class Dataset(Dataset):
             # Extract and modify the relative path
             relative_path = row[key]
             # Remove the initial part of the path using re.sub
-            relative_path = re.sub(r'^.*?mount/', '', relative_path)
+            relative_path = re.sub(r'^.*?data/', '', relative_path)
             # Construct the full path from root directory and modified relative path
             file_path = os.path.join(self.root_dir, relative_path)
 
@@ -433,7 +433,7 @@ class Dataset(Dataset):
 
 csv_test = pd.read_csv("test_data.csv")
 # Specify the root directory where the images and masks are stored
-root_directory = "/home/moustafa/Cityscapes_Moustafa/mount"
+root_directory = "/data"
 
 # Specify the keys of interest, typically the columns for images and masks in your DataFrame
 keys_of_interest = ["image path", "target path"]
@@ -507,7 +507,7 @@ def plot_and_save_samples(inputs, targets, predictions, num_classes, save_path, 
     print(f"Saved {inputs_np.shape[0]} sample plots from batch {batch_idx} to '{save_path}'.")
 
 
-def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_dir='/data/results'):
+def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_dir='/home/moustafa/Cityscapes_Moustafa/CityScapes/results'):
     model.eval()
 
     all_preds = []
@@ -530,8 +530,8 @@ def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_di
             all_labels.append(targets.cpu())
 
             # Plot and save results for a few samples (e.g., first 5 batches)
-            if batch_idx < 1:  # Change this number to adjust the number of batches you want to plot
-                plot_and_save_samples(inputs, targets, predicted, num_classes, output_dir, batch_idx)
+              # Change this number to adjust the number of batches you want to plot
+            plot_and_save_samples(inputs, targets, predicted, num_classes, output_dir, batch_idx)
 
     # Concatenate all predictions and labels
     all_preds = torch.cat(all_preds)
@@ -553,14 +553,14 @@ def evaluate_model_on_test_set(dl_test, model, device, num_classes=20, output_di
 
 # Example usage:
 model = UNet(in_channels=3, out_channels=20).to(device)
-checkpoint_path = "/data/model_checkpoint_epoch_55.pth"
+checkpoint_path = "/data/model_checkpoint_epoch_69.pth"
 
 # Load model from checkpoint if exists
 if os.path.exists(checkpoint_path):
     print(f"Loading model from checkpoint {checkpoint_path}")
     checkpoint = torch.load(checkpoint_path,map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
-    print(f"Checkpoint loaded. Best Mean IoU: 0.4516")
+    print(f"Checkpoint loaded. Best Mean IoU: 0.5462")
 else:
     start_epoch = 0
     best_mean_iou = 0.0
