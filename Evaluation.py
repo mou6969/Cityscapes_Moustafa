@@ -455,8 +455,7 @@ from torch.utils.data import DataLoader
 # Initialize the DataLoader for the training dataset
 dl_test = DataLoader(
     dataset=ds_test,
-    batch_size=16,            # Batch size for training
-    num_workers=4,           # Number of worker threads to load data       # Number of samples loaded in advance by each worker
+    batch_size=16,            # Batch size for training          # Number of worker threads to load data       # Number of samples loaded in advance by each worker
     shuffle=True,         # Shuffle the data at every epoch
 )
 #####################################################################################################################################################
